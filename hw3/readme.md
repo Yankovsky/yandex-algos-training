@@ -1,0 +1,1 @@
+[Homework 3](https://contest.yandex.ru/contest/27663/problems/A/)

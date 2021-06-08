@@ -1,0 +1,1 @@
+python read_input_text.py < input_text.txt
