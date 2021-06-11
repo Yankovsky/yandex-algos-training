@@ -1,6 +1,6 @@
 def apps_per_floor(m, k, p, n):
     if p == 1 and n == 1:
-        return range(k, k + m + 1)
+        return [k, k + m + 1]
     bound1 = (k - 1) // (m * (p - 1) + n - 1)
     bound2 = k // (m * (p - 1) + n)
     min_bound = min(bound1, bound2)
@@ -78,6 +78,7 @@ assert emergency(21, 20, 2, 1, 1) == [1, 0]
 assert emergency(753, 10, 1000, 1, 1) == [1, 1]
 assert emergency(10, 3, 50, 1, 50) == [-1, -1]
 assert emergency(25, 3, 1, 1, 1) == [0, 0]
+assert emergency(3, 1, 9, 7, 3) == [-1, -1]
 
 
 def main():
