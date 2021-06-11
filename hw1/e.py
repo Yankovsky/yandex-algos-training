@@ -22,21 +22,12 @@ def emergency(k1, m, k2, p2, n2):
 
     if len(possible_qs) == 0:
         return [-1, -1]
-    elif len(possible_qs) == 1:
-        q = possible_qs[0]
-        # Преобразуем формулу: m * (p - 1) + n = ((k1 - 1 - (k1 - 1) % q) / q) + 1
-        # floor_index = m * (p - 1) + n
-        floor_index = ((k1 - 1 - (k1 - 1) % q) / q) + 1
-        n1 = floor_index % m
-        p1 = ((floor_index - n1) / m) + 1
-        if n1 == 0:
-            n1 = m
-            p1 -= 1
-        return [int(p1), int(n1)]
     else:
         result_n = None
         result_p = None
         for q in possible_qs:
+            # Преобразуем формулу: m * (p - 1) + n = ((k1 - 1 - (k1 - 1) % q) / q) + 1
+            # floor_index = m * (p - 1) + n
             floor_index = ((k1 - 1 - (k1 - 1) % q) / q) + 1
             n1 = floor_index % m
             p1 = ((floor_index - n1) / m) + 1
