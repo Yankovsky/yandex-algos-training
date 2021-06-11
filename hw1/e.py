@@ -111,6 +111,7 @@ assert emergency(3, 1, 2, 1, 1) == [0, 1]
 assert emergency(2, 1, 1, 1, 1) == [0, 1]
 assert emergency(3, 2, 2, 1, 1) == [1, 0]
 assert emergency(2, 3, 1, 1, 1) == [1, 0]
+assert emergency(842887, 10, 163729, 24, 8) == [123, 0]
 
 
 # from random import randint
