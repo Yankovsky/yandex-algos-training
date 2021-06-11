@@ -2,10 +2,17 @@ def minesweeper(n, m, mines):
     field = [[0 for _ in range(m)] for _ in range(n)]
     for x, y in mines:
         field[x - 1][y - 1] = '*'
+        # Можно представить массивами переходов:
+        # di = [1, 1, 1, 0, 0, 0, -1, -1, -1]
+        # dj = [-1, 0, 1, -1, 0, 1, -1, 0, 1]
+        # for k in range(8):
+        #     i = di[k]
+        #     j = dj[k]
         for i in range(-1, 2):
             for j in range(-1, 2):
                 mark_x = x - 1 + i
                 mark_y = y - 1 + j
+                # Можно было вместо проверок расширить поле на 2 клетки.
                 if 0 <= mark_x < n and 0 <= mark_y < m and field[mark_x][mark_y] != '*':
                     field[mark_x][mark_y] += 1
 
