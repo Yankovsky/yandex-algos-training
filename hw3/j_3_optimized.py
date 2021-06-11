@@ -1,6 +1,33 @@
+# Улучшим перебор возможных положений на каждом шаге итерации.
+# Сначала определим возможные значения x для новых положений,
+# а затем используя остатки от прохода до этих значений x определим возможные значения y.
+
+def manhattan_distance(pos_a, pos_b):
+    return abs(pos_a[0] - pos_b[0]) + abs(pos_a[1] - pos_b[1])
+
+
 def manhattan(t, d, positions):
-    # TODO
-    pass
+    previous_positions = {(0, 0)}
+    for navigator_position in positions:
+        possible_positions = set()
+        for previous_position in previous_positions:
+            distance = manhattan_distance(navigator_position, previous_position)
+            if distance <= d + t:
+                min_x_pos = max(navigator_position[0] - d, previous_position[0] - t)
+                max_x_pos = min(navigator_position[0] + d, previous_position[0] + t)
+                for x in range(min_x_pos, max_x_pos + 1):
+                    # оставшееся расстояние после прохождения по прямой до координаты x
+                    # это расстояние будет использовано для определения возможных y координат
+                    leftover_a = d - abs(navigator_position[0] - x)
+                    leftover_b = t - abs(previous_position[0] - x)
+                    min_y_pos = max(navigator_position[1] - leftover_a, previous_position[1] - leftover_b)
+                    max_y_pos = min(navigator_position[1] + leftover_a, previous_position[1] + leftover_b)
+                    for y in range(min_y_pos, max_y_pos + 1):
+                        possible_positions.add((x, y))
+
+        previous_positions = possible_positions
+
+    return previous_positions
 
 
 assert manhattan(2, 1, [(0, 1), (-2, 1), (-2, 3), (0, 3), (2, 5)]) == {(1, 5), (2, 4)}
