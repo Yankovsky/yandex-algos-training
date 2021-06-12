@@ -5,10 +5,8 @@
 
 
 def apps_per_floor(m, k, p, n):
-    bound1 = (k - 1) // (m * (p - 1) + n - 1)
-    bound2 = k // (m * (p - 1) + n)
-    min_bound = min(bound1, bound2)
-    max_bound = max(bound1, bound2)
+    min_bound = k // (m * (p - 1) + n)
+    max_bound = (k - 1) // (m * (p - 1) + n - 1)
     possible_qs = []
     for q in range(min_bound, max_bound + 1):
         if q != 0 and (m * (p - 1) + n - 1) * q + (k - 1) % q == k - 1:
@@ -112,6 +110,8 @@ assert emergency(2, 1, 1, 1, 1) == [0, 1]
 assert emergency(3, 2, 2, 1, 1) == [1, 0]
 assert emergency(2, 3, 1, 1, 1) == [1, 0]
 assert emergency(842887, 10, 163729, 24, 8) == [123, 0]
+assert emergency(20, 10, 4, 1, 5) == [-1, -1]
+assert emergency(20, 10, 5, 1, 5) == [2, 10]
 
 
 # from random import randint
