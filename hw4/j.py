@@ -2,6 +2,8 @@ import sys
 from collections import Counter
 
 
+# Код может показаться немного запутанным, зато без регэкспов и в один проход.
+# Переменные с говорящими названиями.
 def cheating_test(keywords_array, case_sensitive, can_start_with_digit, text):
     keywords_array_filtered = filter(lambda keyword: len(keyword) <= 50, keywords_array)
     keywords = set(keywords_array_filtered if case_sensitive else map(str.lower, keywords_array_filtered))
@@ -83,7 +85,7 @@ abc  abc  abc''') == 'AbC'
 
 def main():
     n, c, d = input().split()
-    keywords = [input().rstrip() for _ in range(int(n))]
+    keywords = [input() for _ in range(int(n))]
     text = sys.stdin.read()
     print(cheating_test(keywords, c == 'yes', d == 'yes', text))
 
