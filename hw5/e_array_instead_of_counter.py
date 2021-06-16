@@ -1,15 +1,17 @@
 import math
-from collections import Counter
 
 
 def beautiful_trees(k, colors):
     left = 0
-    segment_colors = Counter()
+    segment_colors = [0] * (k + 1)
     best_segment = [-math.inf, math.inf]
+    distinct_colors_counter = 0
 
     for right, color in enumerate(colors):
+        if not segment_colors[color]:
+            distinct_colors_counter += 1
         segment_colors[color] += 1
-        if len(segment_colors) == k:
+        if distinct_colors_counter == k:
             while segment_colors[colors[left]] > 1:
                 segment_colors[colors[left]] -= 1
                 left += 1
