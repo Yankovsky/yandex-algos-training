@@ -1,14 +1,12 @@
 def turtles_liars(statements):
     previous_statements = set()
-    result = 0
     for statement in statements:
         no_negative_placements = statement[0] >= 0 and statement[1] >= 0
         correct_number_of_turtles = statement[0] + statement[1] + 1 == len(statements)
         if no_negative_placements and correct_number_of_turtles and statement not in previous_statements:
             previous_statements.add(statement)
-            result += 1
 
-    return result
+    return len(previous_statements)
 
 
 assert turtles_liars([(1, 0), (1, 0)]) == 1
