@@ -1,1 +1,4 @@
-[Homework 3](https://contest.yandex.ru/contest/27663/problems/A/)
+Домашнее задание #3 "Множества"
+
+[Контест](https://contest.yandex.ru/contest/27663/problems/)
+ 
