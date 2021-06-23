@@ -1,1 +1,1 @@
-python read_input.py < input.txt
+python read.py < input.txt
