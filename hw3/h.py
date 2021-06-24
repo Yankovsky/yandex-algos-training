@@ -4,6 +4,7 @@ def angry_pigs(birds):
 
 assert angry_pigs([(1, 1), (2, 2), (3, 3), (2, 1), (3, 2), (3, 1)]) == 3
 assert angry_pigs([(1, 1), (2, 2), (3, 3), (2, 1), (3, 2), (3, 4)]) == 3
+assert angry_pigs([(8, 8), (7, 8), (9, 7), (8, 9), (9, 8)]) == 3
 
 
 def main():
