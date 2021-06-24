@@ -41,10 +41,8 @@ def exam(xs, d):
     # Далее exam_number – номер билета.
     max_exam_number = 0
 
-    # Координаты студентов могут принимать значения от 0 до 10^6 включительно.
-    # Сразу создадим массив решений максимального размера,
-    # по координате студента храним в этом массиве номер его билета.
-    students_exam_numbers = [None] * (1_000_000 + 1)
+    # По координате студента храним в этом словаре номер его билета.
+    exam_number_by_student = {}
 
     # Для получения текущего минимального номера билета будем использовать минимальную кучу (min heap).
     # Основные операции этой структуры данных – это удаление минимума и добавление нового элемента за O(log(N)).
@@ -57,18 +55,18 @@ def exam(xs, d):
             # Получаем минимальный доступный номер билета.
             next_exam_number = heappop(heap)
             max_exam_number = max(max_exam_number, next_exam_number)
-            students_exam_numbers[x] = next_exam_number
+            exam_number_by_student[x] = next_exam_number
         elif event == STUDENT_END:
             # Получаем номер билета текущего студента.
-            student_exam_number = students_exam_numbers[x - d]
+            student_exam_number = exam_number_by_student[x - d]
             # Добавляем этот номер билета в кучу.
             heappush(heap, student_exam_number)
 
     # Нам надо вывести номера билетов студентов в том порядке,
     # в котором они были перечислены в исходном списке.
     # Для этого пройдёмся по исходному списку и по координате студента
-    # получим номер его билета из students_exam_numbers.
-    return max_exam_number, [students_exam_numbers[x] for x in xs]
+    # получим номер его билета из exam_number_by_student.
+    return max_exam_number, [exam_number_by_student[x] for x in xs]
 
 
 assert exam([11, 1, 12, 2], 1) == (2, [1, 1, 2, 2])
