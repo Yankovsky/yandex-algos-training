@@ -14,6 +14,8 @@
 - [Домашнее задание #3 "Множества"](hw3/), [контест](https://contest.yandex.ru/contest/27663/problems/)
 - [Домашнее задание #4 "Словари и сортировка подсчётом"](hw4/), [контест](https://contest.yandex.ru/contest/27665/problems/)
 - [Домашнее задание #5 "Префиксные суммы и два указателя"](hw5/), [контест](https://contest.yandex.ru/contest/27794/problems/)
+- [Домашнее задание #6 "Бинарный поиск"](hw6/), [контест](https://contest.yandex.ru/contest/27844/problems/)
+- [Домашнее задание #7 "Сортировка событий"](hw7/), [контест](https://contest.yandex.ru/contest/27883/problems/)
 
 ## Как получить подсказку по задаче
 
