@@ -27,12 +27,14 @@ def exam(xs, d):
     # Сразу создаём массив необходимой длины – в два раза больше чем количество студентов.
     events = [None] * (n * 2)
     # Используем константы для корректной сортировки пар значений (координата студента, событие).
+    # Также будем сохранять порядок студента в исходном списке,
+    # это понадобится нам при выводе ответа в нужном порядке.
     STUDENT_START = -1
     STUDENT_END = 1
     # Заполняем массив событий и сортируем его.
     for i, x in enumerate(xs):
-        events[i * 2] = (x, STUDENT_START)
-        events[i * 2 + 1] = (x + d, STUDENT_END)
+        events[i * 2] = (x, STUDENT_START, i)
+        events[i * 2 + 1] = (x + d, STUDENT_END, i)
     sorted_events = sorted(events)
 
     # Будем решать задачу за один проход, поэтому сразу создаём все переменные,
@@ -41,24 +43,22 @@ def exam(xs, d):
     # Далее exam_number – номер билета.
     max_exam_number = 0
 
-    # По координате студента храним в этом словаре номер его билета.
-    exam_number_by_student = {}
-
     # Для получения текущего минимального номера билета будем использовать минимальную кучу (min heap).
     # Основные операции этой структуры данных – это удаление минимума и добавление нового элемента за O(log(N)).
     # Максимум билетов может быть столько же сколько студентов, то есть N.
     heap = list(range(1, n + 1))
 
+    results = [None] * n
     # Итерируемся по всем событиям.
-    for x, event in sorted_events:
+    for x, event, original_order in sorted_events:
         if event == STUDENT_START:
             # Получаем минимальный доступный номер билета.
             next_exam_number = heappop(heap)
             max_exam_number = max(max_exam_number, next_exam_number)
-            exam_number_by_student[x] = next_exam_number
+            results[original_order] = next_exam_number
         elif event == STUDENT_END:
             # Получаем номер билета текущего студента.
-            student_exam_number = exam_number_by_student[x - d]
+            student_exam_number = results[original_order]
             # Добавляем этот номер билета в кучу.
             heappush(heap, student_exam_number)
 
@@ -66,7 +66,7 @@ def exam(xs, d):
     # в котором они были перечислены в исходном списке.
     # Для этого пройдёмся по исходному списку и по координате студента
     # получим номер его билета из exam_number_by_student.
-    return max_exam_number, [exam_number_by_student[x] for x in xs]
+    return max_exam_number, results
 
 
 assert exam([11, 1, 12, 2], 1) == (2, [1, 1, 2, 2])
