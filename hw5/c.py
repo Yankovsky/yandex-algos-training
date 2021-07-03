@@ -1,3 +1,5 @@
+# https://contest.yandex.ru/contest/27794/problems/C/
+
 def tourism(points, tracks):
     # Суммарные подъёмы от начала до i слева направо
     prefixes_rises_ltr = [0] + [None] * (len(points) - 1)

@@ -1,3 +1,5 @@
+# https://contest.yandex.ru/contest/27794/problems/F/
+
 import math
 
 

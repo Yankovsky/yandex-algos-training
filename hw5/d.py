@@ -1,3 +1,5 @@
+# https://contest.yandex.ru/contest/27794/problems/C/
+
 def statues(r, distances):
     result = 0
     right = 1

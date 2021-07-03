@@ -1,3 +1,5 @@
+# https://contest.yandex.ru/contest/27794/problems/B/
+
 def numbers_sum(k, nums):
     result = 0
     left = 0
