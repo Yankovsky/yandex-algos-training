@@ -1,3 +1,5 @@
+# https://contest.yandex.ru/contest/27794/problems/E/
+
 def beautiful_trees(k, colors):
     left = 0
     segment_colors = [0] * (k + 1)
