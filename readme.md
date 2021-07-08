@@ -17,6 +17,7 @@
 - [Домашнее задание #5 "Префиксные суммы и два указателя"](hw5/), [контест](https://contest.yandex.ru/contest/27794/problems/)
 - [Домашнее задание #6 "Бинарный поиск"](hw6/), [контест](https://contest.yandex.ru/contest/27844/problems/)
 - [Домашнее задание #7 "Сортировка событий"](hw7/), [контест](https://contest.yandex.ru/contest/27883/problems/)
+- [Домашнее задание #8 "Деревья"](hw8/), [контест](https://contest.yandex.ru/contest/28069/problems/)
 
 ## Как получить подсказку по задаче
 
