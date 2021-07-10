@@ -1,4 +1,4 @@
-# https://contest.yandex.ru/contest/28069/problems/D/
+# https://contest.yandex.ru/contest/28069/problems/G/
 
 class BSTNode:
     def __init__(self, key=None):
