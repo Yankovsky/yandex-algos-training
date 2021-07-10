@@ -1,46 +1,97 @@
 # https://contest.yandex.ru/contest/28069/problems/A/
+# Ниже представлено три способа добавления нового элемента в дерево, все рабочие:
+# insert_recursive – рекурсивная вставка с вызовом функцией самой себя
+# insert_with_loop – цикл вместо рекурсии
+# insert_with_loop_optimized – цикл вместо рекурсии с сохранением родителя на каждой итерации
+# Первый способ самый простой для понимания, третий самый быстрый.
 
-class BinarySearchTreeNode:
-    def __init__(self, key, level, left=None, right=None):
+# BST = Binary Search Tree
+class BSTNode:
+    def __init__(self, key=None, level=1):
         self.key = key
         self.level = level
-        self.left = left
-        self.right = right
+        self.left = None
+        self.right = None
+
+    def insert_recursive(self, key):
+        if self.key is None:
+            self.key = key
+            return self
+
+        if key == self.key:
+            return self
+
+        if key < self.key:
+            if self.left:
+                return self.left.insert_recursive(key)
+            self.left = BSTNode(key=key, level=self.level + 1)
+            return self.left
+
+        if self.right:
+            return self.right.insert_recursive(key)
+        self.right = BSTNode(key=key, level=self.level + 1)
+        return self.right
+
+    # Используем цикл вместо рекурсии
+    def insert_with_loop(self, key):
+        if self.key is None:
+            self.key = key
+            return self
+
+        current_node = self
+        while True:
+            if key == current_node.key:
+                return current_node
+            if key < current_node.key:
+                if current_node.left:
+                    current_node = current_node.left
+                else:
+                    current_node.left = BSTNode(key=key, level=current_node.level + 1)
+                    return current_node.left
+            else:
+                if current_node.right:
+                    current_node = current_node.right
+                else:
+                    current_node.right = BSTNode(key=key, level=current_node.level + 1)
+                    return current_node.right
+
+    # Используем цикл вместо рекурсии и храним родителя на каждом шаге итерации
+    def insert_with_loop_optimized(self, key):
+        if self.key is None:
+            self.key = key
+            return self
+
+        current_node = self
+        previous_node = None
+        while current_node is not None:
+            if key == current_node.key:
+                return current_node
+
+            previous_node = current_node
+            if key < current_node.key:
+                current_node = current_node.left
+            else:
+                current_node = current_node.right
+
+        new_node = BSTNode(key=key, level=previous_node.level + 1)
+
+        if key < previous_node.key:
+            previous_node.left = new_node
+        else:
+            previous_node.right = new_node
+        return new_node
 
     def __str__(self):
         return f'({self.key} l={self.left}, r={self.right})'
 
 
 def tree_height(keys):
+    bst = BSTNode()
     max_level = 0
-    root_node = None
     for key in keys:
-        if not root_node:
-            root_node = BinarySearchTreeNode(key, 1)
-            max_level = 1
-        else:
-            current_node = root_node
-            while True:
-                if key == current_node.key:
-                    break
-                elif key < current_node.key:
-                    if current_node.left:
-                        current_node = current_node.left
-                    else:
-                        new_level = current_node.level + 1
-                        current_node.left = BinarySearchTreeNode(key, current_node.level + 1)
-                        if new_level > max_level:
-                            max_level = new_level
-                        break
-                else:
-                    if current_node.right:
-                        current_node = current_node.right
-                    else:
-                        new_level = current_node.level + 1
-                        current_node.right = BinarySearchTreeNode(key, current_node.level + 1)
-                        if new_level > max_level:
-                            max_level = new_level
-                        break
+        new_node = bst.insert_with_loop_optimized(key)
+        if new_node.level > max_level:
+            max_level = new_node.level
 
     return max_level
 
