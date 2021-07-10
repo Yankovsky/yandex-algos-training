@@ -25,12 +25,14 @@ class BSTNode:
         self.right = BSTNode(key)
         return self.right
 
-    def traverse(self, func):
+    def __iter__(self):
         if self.left:
-            self.left.traverse(func)
-        func(self)
+            for node in self.left:
+                yield node
+        yield self
         if self.right:
-            self.right.traverse(func)
+            for node in self.right:
+                yield node
 
 
 def nodes_with_one_child(keys):
@@ -40,11 +42,10 @@ def nodes_with_one_child(keys):
 
     results = []
 
-    def append_node_with_one_child(node):
+    for node in bst:
         if (node.left and not node.right) or (not node.left and node.right):
             results.append(node.key)
 
-    bst.traverse(append_node_with_one_child)
     return results
 
 

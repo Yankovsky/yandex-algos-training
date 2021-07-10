@@ -25,12 +25,14 @@ class BSTNode:
         self.right = BSTNode(key)
         return self.right
 
-    def traverse(self, func):
+    def __iter__(self):
         if self.left:
-            self.left.traverse(func)
-        func(self)
+            for node in self.left:
+                yield node
+        yield self
         if self.right:
-            self.right.traverse(func)
+            for node in self.right:
+                yield node
 
 
 def traversal(keys):
@@ -38,9 +40,7 @@ def traversal(keys):
     for key in keys:
         bst.insert_recursive(key)
 
-    results = []
-    bst.traverse(lambda node: results.append(node.key))
-    return results
+    return [node.key for node in bst]
 
 
 assert traversal([7, 3, 2, 1, 9, 5, 4, 6, 8]) == [1, 2, 3, 4, 5, 6, 7, 8, 9]

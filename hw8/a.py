@@ -81,12 +81,14 @@ class BSTNode:
             previous_node.right = new_node
         return new_node
 
-    def traverse(self, func):
+    def __iter__(self):
         if self.left:
-            self.left.traverse(func)
-        func(self)
+            for node in self.left:
+                yield node
+        yield self
         if self.right:
-            self.right.traverse(func)
+            for node in self.right:
+                yield node
 
     def __str__(self):
         return f'({self.key} l={self.left}, r={self.right})'
