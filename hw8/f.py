@@ -33,33 +33,38 @@ class BSTNode:
             self.right.traverse(func)
 
 
-def traversal(keys):
+def nodes_with_two_children(keys):
     bst = BSTNode()
     for key in keys:
         bst.insert_recursive(key)
 
     results = []
-    bst.traverse(lambda node: results.append(node.key))
+
+    def append_node_with_two_children(node):
+        if node.left and node.right:
+            results.append(node.key)
+
+    bst.traverse(append_node_with_two_children)
     return results
 
 
-assert traversal([7, 3, 2, 1, 9, 5, 4, 6, 8]) == [1, 2, 3, 4, 5, 6, 7, 8, 9]
-assert traversal([7, 3, 3, 3, 2, 1, 9, 5, 4, 6, 8]) == [1, 2, 3, 4, 5, 6, 7, 8, 9]
-assert traversal([9, 4, 2, 1]) == [1, 2, 4, 9]
-assert traversal([1, 6, 8, 2]) == [1, 2, 6, 8]
-assert traversal([1, 7]) == [1, 7]
-assert traversal([7, 1]) == [1, 7]
-assert traversal([3, 1, 2]) == [1, 2, 3]
-assert traversal([3, 1, 2, 0]) == [0, 1, 2, 3]
-assert traversal([5, 4, 3, 2, 1, 0, -1, -2, -3, -4, -5]) == [-5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5]
-assert traversal([-5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5]) == [-5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5]
-assert traversal([4, 2, 4, 6, 2, 4, 1, 6, 2, 4, 3, 1, 6, 2, 4, 5, 3, 1, 6, 2, 4, 7, 5, 3, 1, 6, 2, 4]) == \
-       [1, 2, 3, 4, 5, 6, 7]
+assert nodes_with_two_children([7, 3, 2, 1, 9, 5, 4, 6, 8]) == [3, 5, 7]
+assert nodes_with_two_children([7, 3, 3, 3, 2, 1, 9, 5, 4, 6, 8]) == [3, 5, 7]
+assert nodes_with_two_children([9, 4, 2, 1]) == []
+assert nodes_with_two_children([1, 6, 8, 2]) == [6]
+assert nodes_with_two_children([1, 7]) == []
+assert nodes_with_two_children([7, 1]) == []
+assert nodes_with_two_children([3, 1, 2]) == []
+assert nodes_with_two_children([3, 1, 2, 0]) == [1]
+assert nodes_with_two_children([5, 4, 3, 2, 1, 0, -1, -2, -3, -4, -5]) == []
+assert nodes_with_two_children([-5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5]) == []
+assert nodes_with_two_children([4, 2, 4, 6, 2, 4, 1, 6, 2, 4, 3, 1, 6, 2, 4, 5, 3, 1, 6, 2, 4, 7, 5, 3, 1, 6, 2, 4]) == \
+       [2, 4, 6]
 
 
 def main():
     keys = list(map(int, input().split()))[:-1]
-    for key in traversal(keys):
+    for key in nodes_with_two_children(keys):
         print(key)
 
 

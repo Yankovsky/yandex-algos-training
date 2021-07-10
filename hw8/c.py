@@ -1,9 +1,8 @@
 # https://contest.yandex.ru/contest/28069/problems/C/
 
 class BSTNode:
-    def __init__(self, key=None, level=1):
+    def __init__(self, key=None):
         self.key = key
-        self.level = level
         self.left = None
         self.right = None
 
@@ -18,12 +17,12 @@ class BSTNode:
         if key < self.key:
             if self.left:
                 return self.left.insert_recursive(key)
-            self.left = BSTNode(key=key, level=self.level + 1)
+            self.left = BSTNode(key)
             return self.left
 
         if self.right:
             return self.right.insert_recursive(key)
-        self.right = BSTNode(key=key, level=self.level + 1)
+        self.right = BSTNode(key)
         return self.right
 
 
