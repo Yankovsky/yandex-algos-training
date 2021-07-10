@@ -97,6 +97,16 @@ def tree_height(keys):
 
 
 assert tree_height([7, 3, 2, 1, 9, 5, 4, 6, 8]) == 4
+assert tree_height([7, 3, 3, 3, 2, 1, 9, 5, 4, 6, 8]) == 4
+assert tree_height([9, 4, 2, 1]) == 4
+assert tree_height([1, 6, 8, 2]) == 3
+assert tree_height([1, 7]) == 2
+assert tree_height([7, 1]) == 2
+assert tree_height([3, 1, 2]) == 3
+assert tree_height([3, 1, 2, 0]) == 3
+assert tree_height([5, 4, 3, 2, 1, 0, -1, -2, -3, -4, -5]) == 11
+assert tree_height([-5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5]) == 11
+assert tree_height([4, 2, 4, 6, 2, 4, 1, 6, 2, 4, 3, 1, 6, 2, 4, 5, 3, 1, 6, 2, 4, 7, 5, 3, 1, 6, 2, 4]) == 3
 assert tree_height([7, 3, 2, 1, 9, 5, 7, 3, 2, 1, 5, 7, 2, 3, 1, 5, 4, 6, 8]) == 4
 
 
