@@ -23,6 +23,7 @@ def descendants_count(descendant_parent_pairs):
             nodes[parent] = GenealogicalTreeNode(parent)
         if descendant not in nodes:
             nodes[descendant] = GenealogicalTreeNode(descendant)
+
         nodes[descendant].parent = nodes[parent]
         nodes[parent].update_descendants(nodes[descendant].descendants + 1)
 
