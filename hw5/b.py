@@ -6,7 +6,7 @@ def numbers_sum(k, nums):
     current_sum = 0
     for right, num in enumerate(nums):
         current_sum += num
-        while current_sum > k and left <= right:
+        while current_sum > k:
             current_sum -= nums[left]
             left += 1
 
